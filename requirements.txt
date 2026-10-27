@@ -1,0 +1,6 @@
+# driver side (runs on any machine that can reach the vLLM server and the OpenAI API)
+openai>=1.50
+transformers>=4.51
+tqdm>=4.66
+pytest>=8
+# server side only (GPU): pip install "vllm>=0.10" in the environment that runs scripts/start_vllm.sh / scripts/worker.sbatch

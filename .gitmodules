@@ -1,0 +1,3 @@
+[submodule "vendor/hoosierhelp"]
+	path = vendor/hoosierhelp
+	url = https://github.com/Yiyang-Ian-Li/HoosierHelp.git
