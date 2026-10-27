@@ -1,7 +1,8 @@
 # Receiver-Conditioned Clarification for Multi-Agent Food Assistance
 
-Reference implementation of the fan-out multi-agent topology described in Appendix G of the paper
-*Receiver-Conditioned Clarification for Multi-Agent Food Assistance*, evaluated on the
+This repository contains the open-source code for the paper
+*Receiver-Conditioned Clarification for Multi-Agent Food Assistance*. It implements the fan-out multi-agent system
+presented in the paper and evaluates it on the
 [HoosierHelp](https://github.com/Yiyang-Ian-Li/HoosierHelp) resource-navigation benchmark.
 
 ```
@@ -9,6 +10,8 @@ Reference implementation of the fan-out multi-agent topology described in Append
  person ⇄ intake ├──────────── schedule receiver ────────┤ → joint planner (deterministic) → retriever → final recommendation
                  └──────────── logistics receiver ───────┘
 ```
+
+## Method overview
 
 * **Intake** reads the dialogue and emits candidate interpretations of the person's needs (`need × field` premises)
   with empirical support (one greedy plus `S` sampled proposals, grouped into at most `K` candidates).
@@ -38,7 +41,7 @@ on an OpenAI model. Nothing is trained.
 
 ```
 rclup/                     the system
-  fanout2.py               receivers, hard-constraint validation, joint planner, relaxation ladder, budgets (App. G)
+  fanout2.py               receivers, hard-constraint validation, joint planner, relaxation ladder, budgets
   workflow.py              episode driver, candidate packets, controllers (ours and the baselines), repair logic
   roles.py                 role prompts, tool schemas, parsers and canonicalisers
   packets.py               candidate packets (support weights, residual mass, provenance)
@@ -152,8 +155,8 @@ python -m rclup.run_episodes --controller voi_det --variant atomic --intake-poli
     --max-calls-episode 180 --out eval/atomic/seed0/hoosier_voi_det_b5
 ```
 
-The listed values are the defaults under the fan-out topology; `python -m rclup.run_episodes --help` documents every
-option, including the component switches (`--modules-off`).
+The listed values are the defaults; `python -m rclup.run_episodes --help` documents every option, including the
+component switches (`--modules-off`) used for the ablations.
 
 ### Outputs
 
@@ -174,5 +177,10 @@ pytest -q tests
 
 ## Citation
 
-Please cite the paper *Receiver-Conditioned Clarification for Multi-Agent Food Assistance* when using this code, and the
-HoosierHelp benchmark for the environment and the simulated user.
+If you use this code, please cite *Receiver-Conditioned Clarification for Multi-Agent Food Assistance*. Please also
+cite the HoosierHelp benchmark, which provides the environment and the simulated user.
+
+## License
+
+The code under `rclup/`, `scripts/` and `tests/` is released for research use. The HoosierHelp benchmark under
+`vendor/hoosierhelp` is a pinned git submodule and keeps its own license.
