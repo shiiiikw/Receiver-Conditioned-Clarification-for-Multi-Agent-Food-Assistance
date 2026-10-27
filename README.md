@@ -179,8 +179,3 @@ pytest -q tests
 
 If you use this code, please cite *Receiver-Conditioned Clarification for Multi-Agent Food Assistance*. Please also
 cite the HoosierHelp benchmark, which provides the environment and the simulated user.
-
-## License
-
-The code under `rclup/`, `scripts/` and `tests/` is released for research use. The HoosierHelp benchmark under
-`vendor/hoosierhelp` is a pinned git submodule and keeps its own license.
